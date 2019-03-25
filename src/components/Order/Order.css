@@ -1,0 +1,30 @@
+.Order {
+    width: 80%;
+    border: 1px solid #eee;
+    box-shadow: 1px 2px 3px #ccc;
+    padding: 10px;
+    margin: 10px auto;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.List {
+    display: inline-flex;
+    list-style: none;
+    flex-flow: column;
+    text-transform: capitalize;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.List p {
+    border: 1px solid black;
+    padding: 5px;
+    margin: 3px;
+}
+
+@media(min-width: 800px){
+    .List{
+        flex-flow: row;
+    }
+}
