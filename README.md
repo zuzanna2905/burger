@@ -1,4 +1,4 @@
-#Spendings
+#Burger
 
 Idea
 
