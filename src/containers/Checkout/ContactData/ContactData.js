@@ -7,6 +7,7 @@ import classes from './ContactData.css';
 import axios from '../../../axios-orders';
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../../store/actions/index';
+import { updateObject, checkValidity } from '../../../shared/utility';
 
 class ContactData extends Component {
     state = {
@@ -111,35 +112,20 @@ class ContactData extends Component {
     }
 
     inputHandler = (e, inputID) => {
-        let orderForm = { ...this.state.orderForm};
-        let element = { ...orderForm[inputID]};
-        element.value = e.target.value;
-        element.valid = this.checkValidity(element.value, element.validation)
-        element.touched = true;
-        orderForm[inputID] = element;
+        const element = updateObject(this.state.orderForm[inputID], {
+            value: e.target.value, 
+            valid: checkValidity(e.target.value, this.state.orderForm[inputID].validation),
+            touched: true
+        })
+        const orderForm = updateObject(this.state.orderForm, {
+            [inputID] : element
+        })
         
         let formIsValid = true;
         for(let i in orderForm){
             formIsValid = orderForm[i].valid && formIsValid;
         }
         this.setState({orderForm: orderForm, formIsValid: formIsValid});
-    }
-
-    checkValidity = (value, rules) =>{
-        let isValid = true;
-        if(rules.required){
-            isValid = value.trim() !== '' && isValid;
-        }
-
-        if(rules.minLength){
-            isValid = value.length >= rules.minLength && isValid;
-        }
-
-        if(rules.maxLength){
-            isValid = value.length <= rules.maxLength && isValid;
-        }
-
-        return isValid;
     }
 
     render() {
