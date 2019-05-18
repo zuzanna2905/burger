@@ -11,7 +11,9 @@ The data is stored in database.
 Technologies
 
 The app is based on React/Redux, JavaScript, CSS3, HTML5, Firebase
+
 Tests: Jest/Enzyme (some)
+
 Checkout: https://burger-a2c1c.firebaseapp.com/
 
 ### `npm start`
